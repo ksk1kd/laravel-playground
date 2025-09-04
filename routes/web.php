@@ -11,3 +11,7 @@ Route::get('/greeting', function () {
 });
 
 Route::redirect('/redirect', '/');
+
+Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {
+    return 'Post ID: ' . $postId . ', Comment ID: ' . $commentId;
+})->whereNumber('post')->whereAlphaNumeric('comment');
