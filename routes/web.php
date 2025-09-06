@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,3 +16,7 @@ Route::redirect('/redirect', '/');
 Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {
     return 'Post ID: ' . $postId . ', Comment ID: ' . $commentId;
 })->whereNumber('post')->whereAlphaNumeric('comment');
+
+Route::get('/protected', function () {
+    return 'Protected Page';
+})->middleware(EnsureTokenIsValid::class);
