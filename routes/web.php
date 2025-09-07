@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GreetingController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
@@ -10,6 +11,7 @@ Route::get('/', function () {
 Route::get('/greeting', function () {
     return 'Hello World';
 });
+Route::get('/greeting/controler', [GreetingController::class, 'show']);
 
 Route::redirect('/redirect', '/');
 
