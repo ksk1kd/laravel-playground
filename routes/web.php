@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GreetingController;
+use App\Http\Controllers\ProtectedController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ Route::get('/posts/{post}/comments/{comment}', function (string $postId, string 
 Route::get('/protected', function () {
     return 'Protected Page';
 })->middleware(EnsureTokenIsValid::class);
+Route::get('/protected/controler', [ProtectedController::class, 'show']);
