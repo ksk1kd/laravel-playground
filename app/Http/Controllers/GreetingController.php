@@ -12,7 +12,9 @@ class GreetingController extends Controller
     public function show(Request $request): string
     {
         $response = "Hello World From Controler<br>";
-        $response .= "Path: " . $request->path(); 
+        $response .= "Path: " . $request->path() . "<br>";
+        $names = $request->array('name');
+        $response .= "Names: " . json_encode($names);
         return $response;
     }
 }
