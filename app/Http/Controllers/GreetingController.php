@@ -9,8 +9,10 @@ class GreetingController extends Controller
     /**
      * Show the greeting.
      */
-    public function show(): string
+    public function show(Request $request): string
     {
-        return 'Hello World From Controler';
+        $response = "Hello World From Controler<br>";
+        $response .= "Path: " . $request->path(); 
+        return $response;
     }
 }
