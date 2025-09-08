@@ -123,4 +123,22 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Trusted Hosts
+    |--------------------------------------------------------------------------
+    |
+    | This configuration option allows you to specify which hosts are trusted
+    | for your application. This helps prevent Host header injection attacks
+    | by validating the Host header against a list of trusted host patterns.
+    | You can specify exact hostnames or use wildcard patterns.
+    |
+    | Example: ['example.com', '*.example.com', 'localhost']
+    |
+    */
+
+    'trusted_hosts' => [
+        env('APP_TRUSTED_HOST', ''),
+    ],
+
 ];

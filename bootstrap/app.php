@@ -12,7 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/status',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->trustHosts(at: fn () => config('app.trusted_hosts'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
