@@ -10,7 +10,9 @@ Route::get('/', function () {
 });
 
 Route::get('/greeting', function () {
-    return 'Hello World';
+    return response('Hello World')->cookie(
+        'name', 'value', 1000
+    );
 });
 Route::get('/greeting/controler', [GreetingController::class, 'show']);
 
