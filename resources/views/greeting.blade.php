@@ -1,3 +1,4 @@
 <div>
-    Hello, {{ $name }}
+    <p>Hello, {{ $name }}.</p>
+    <p>This is {{ $sitename }} site.</p>
 </div>
