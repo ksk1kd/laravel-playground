@@ -15,6 +15,8 @@ class GreetingController extends Controller
         $response .= "Path: " . $request->path() . "<br>";
         $names = $request->array('name');
         $response .= "Names: " . json_encode($names);
-        return $response;
+        // return $response;
+
+        return view('greeting', ['name' => 'Victoria']);
     }
 }
