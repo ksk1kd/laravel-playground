@@ -2,3 +2,5 @@
     <p>Hello, {{ $name }}.</p>
     <p>This is {{ $sitename }} site.</p>
 </div>
+
+@include('greeting.sub')
