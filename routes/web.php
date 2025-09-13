@@ -3,6 +3,7 @@
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\ProtectedController;
 use App\Http\Middleware\EnsureTokenIsValid;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,3 +35,16 @@ Route::get('/protected', function () {
     return 'Protected Page';
 })->middleware(EnsureTokenIsValid::class);
 Route::get('/protected/controler', [ProtectedController::class, 'show']);
+
+Route::get('/session/put', function (Request $request) {
+    $request->session()->put('sample_session', 'sample session value');
+    return '';
+});
+Route::get('/session/get', function (Request $request) {
+    $session_value = $request->session()->get('sample_session', 'default value');
+    return 'Session Value: ' . $session_value;
+});
+Route::get('/session/forget', function (Request $request) {
+    $request->session()->forget('sample_session');
+    return '';
+});
