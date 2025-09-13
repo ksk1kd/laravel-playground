@@ -18,9 +18,17 @@ Route::get('/greeting/controler', [GreetingController::class, 'show']);
 
 Route::redirect('/redirect', '/');
 
+Route::get('/posts/{post}', function (string $postId) {
+    return 'Sample Comment URL: ' . route('post.comment.show', ['post' => 11111, 'comment' => 'xxxxx']);
+})
+->whereNumber('post')
+->name('post.show');
 Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {
     return 'Post ID: ' . $postId . ', Comment ID: ' . $commentId;
-})->whereNumber('post')->whereAlphaNumeric('comment');
+})
+->whereNumber('post')
+->whereAlphaNumeric('comment')
+->name('post.comment.show');
 
 Route::get('/protected', function () {
     return 'Protected Page';
