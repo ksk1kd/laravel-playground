@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GreetingController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProtectedController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Http\Request;
@@ -19,6 +20,9 @@ Route::get('/greeting/controler', [GreetingController::class, 'show']);
 
 Route::redirect('/redirect', '/');
 
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::post('/posts', [PostController::class, 'store']);
+Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post}', function (string $postId) {
     return 'Sample Comment URL: ' . route('post.comment.show', ['post' => 11111, 'comment' => 'xxxxx']);
 })
