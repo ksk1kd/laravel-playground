@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class GreetingController extends Controller
 {
@@ -17,6 +18,10 @@ class GreetingController extends Controller
         $response .= "Names: " . json_encode($names);
         // return $response;
 
-        return view('greeting', ['name' => 'Victoria']);
+        $time = Cache::remember('greeting time', 10, function () {
+            return now();
+        });
+
+        return view('greeting', ['name' => 'Victoria', 'time' => $time]);
     }
 }
