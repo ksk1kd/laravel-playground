@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProtectedController;
@@ -20,6 +21,8 @@ Route::get('/greeting', function () {
 Route::get('/greeting/controler', [GreetingController::class, 'show']);
 
 Route::get('/collection', [CollectionController::class, 'show']);
+
+Route::get('/event', [EventController::class, 'show']);
 
 Route::redirect('/redirect', '/');
 
