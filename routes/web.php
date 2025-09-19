@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProtectedController;
@@ -58,3 +59,6 @@ Route::get('/session/forget', function (Request $request) {
     $request->session()->forget('sample_session');
     return '';
 });
+
+Route::get('/file-upload', [FileUploadController::class, 'index']);
+Route::post('/file-upload', [FileUploadController::class, 'store']);
