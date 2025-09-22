@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArrController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FileUploadController;
@@ -22,6 +23,8 @@ Route::get('/greeting', function () {
 Route::get('/greeting/controler', [GreetingController::class, 'show']);
 
 Route::get('/collection', [CollectionController::class, 'show']);
+
+Route::get('/arr', [ArrController::class, 'show']);
 
 Route::get('/event', [EventController::class, 'show']);
 
