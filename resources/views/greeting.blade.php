@@ -1,5 +1,5 @@
 <div>
-    <p>Hello, {{ $name }}.</p>
+    <p>{{ __('sample.greeting') }}, {{ $name }}.</p>
     <p>This is {{ $sitename }} site.</p>
     <p>Time: {{ $time }}</p>
 </div>

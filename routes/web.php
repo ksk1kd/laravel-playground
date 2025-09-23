@@ -10,6 +10,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProtectedController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +23,7 @@ Route::get('/greeting', function () {
     );
 });
 Route::get('/greeting/controler', [GreetingController::class, 'show']);
+Route::get('/greeting/controler/{locale}', [GreetingController::class, 'show']);
 
 Route::get('/collection', [CollectionController::class, 'show']);
 
