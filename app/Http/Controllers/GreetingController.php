@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Greeting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 
 class GreetingController extends Controller
 {
@@ -28,6 +30,8 @@ class GreetingController extends Controller
         $time = Cache::remember('greeting time', 10, function () {
             return now();
         });
+
+        Mail::to('sample@example.com')->send(new Greeting());
 
         return view('greeting', ['name' => 'Victoria', 'time' => $time]);
     }
