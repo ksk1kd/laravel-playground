@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Greeting;
+use App\Notifications\Greeting as GreetingNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class GreetingController extends Controller
 {
@@ -32,6 +34,9 @@ class GreetingController extends Controller
         });
 
         Mail::to('sample@example.com')->send(new Greeting());
+
+        Notification::route('mail', 'sample@example.com')
+            ->notify(new GreetingNotification());
 
         return view('greeting', ['name' => 'Victoria', 'time' => $time]);
     }
