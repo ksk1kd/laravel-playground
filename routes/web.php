@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\HttpClientController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProtectedController;
 use App\Http\Middleware\EnsureTokenIsValid;
@@ -70,3 +71,5 @@ Route::get('/file-upload', [FileUploadController::class, 'index']);
 Route::post('/file-upload', [FileUploadController::class, 'store']);
 
 Route::get('/http-client', [HttpClientController::class, 'show']);
+
+Route::get('/job', [JobController::class, 'dispatchTestJob']);
