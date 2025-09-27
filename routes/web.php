@@ -73,3 +73,5 @@ Route::post('/file-upload', [FileUploadController::class, 'store']);
 Route::get('/http-client', [HttpClientController::class, 'show']);
 
 Route::get('/job', [JobController::class, 'dispatchTestJob']);
+Route::get('/job/batch', [JobController::class, 'dispatchBatchJob']);
+Route::get('/job/batch/{batchId}', [JobController::class, 'getBatchStatus']);
