@@ -11,7 +11,8 @@ class UserModelController extends Controller
 {
     public function index(): JsonResponse
     {
-        $users = User::select('id', 'name', 'email', 'created_at', 'updated_at')
+        $users = User::with('roles')
+            ->select('id', 'name', 'email', 'created_at', 'updated_at')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -20,7 +21,8 @@ class UserModelController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        $user = User::select('id', 'name', 'email', 'created_at', 'updated_at')
+        $user = User::with('roles')
+            ->select('id', 'name', 'email', 'created_at', 'updated_at')
             ->find($id);
 
         if (!$user) {
@@ -97,7 +99,8 @@ class UserModelController extends Controller
 
     public function search(Request $request): JsonResponse
     {
-        $query = User::select('id', 'name', 'email', 'created_at', 'updated_at');
+        $query = User::with('roles')
+            ->select('id', 'name', 'email', 'created_at', 'updated_at');
 
         if ($request->has('name')) {
             $query->where('name', 'like', '%' . $request->name . '%');

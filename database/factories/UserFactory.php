@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -40,5 +41,21 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    /**
+     * Configure the model factory.
+     */
+    public function configure(): static
+    {
+        return $this->afterCreating(function ($user) {
+            $roles = Role::all();
+
+            if ($roles->isNotEmpty()) {
+                $randomCount = rand(1, $roles->count());
+                $randomRoles = $roles->random($randomCount);
+                $user->roles()->attach($randomRoles);
+            }
+        });
     }
 }
