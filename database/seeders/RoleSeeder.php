@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleType;
 use App\Models\Role;
+use App\ValueObjects\RoleValue;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,14 +15,8 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::firstOrCreate(
-            ['name' => 'admin'],
-            ['description' => 'Administrator with full access']
-        );
-
-        Role::firstOrCreate(
-            ['name' => 'editor'],
-            ['description' => 'Editor with content management access']
-        );
+        foreach (RoleType::cases() as $roleType) {
+            Role::create(['type' => new RoleValue($roleType->value)]);
+        }
     }
 }
