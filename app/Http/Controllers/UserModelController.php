@@ -3,20 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Resources\UserCollection;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
 class UserModelController extends Controller
 {
-    public function index(): JsonResponse
+    public function index()
     {
-        $users = User::with('roles')
-            ->select('id', 'name', 'email', 'created_at', 'updated_at')
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        return response()->json($users);
+        return new UserCollection(User::with('roles')->orderBy('created_at', 'desc')->paginate());
     }
 
     public function show(int $id): JsonResponse
