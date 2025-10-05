@@ -49,12 +49,10 @@ class UserFactory extends Factory
     public function configure(): static
     {
         return $this->afterCreating(function ($user) {
-            $roles = Role::all();
+            $roleIds = Role::inRandomOrder()->limit(rand(1, Role::count()))->pluck('id');
 
-            if ($roles->isNotEmpty()) {
-                $randomCount = rand(1, $roles->count());
-                $randomRoles = $roles->random($randomCount);
-                $user->roles()->attach($randomRoles);
+            if ($roleIds->isNotEmpty()) {
+                $user->roles()->attach($roleIds);
             }
         });
     }
